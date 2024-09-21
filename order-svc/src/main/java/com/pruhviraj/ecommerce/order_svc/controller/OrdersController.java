@@ -1,15 +1,13 @@
 package com.pruhviraj.ecommerce.order_svc.controller;
 
+
 import com.pruhviraj.ecommerce.order_svc.dto.OrderRequestDto;
 import com.pruhviraj.ecommerce.order_svc.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +18,14 @@ import java.util.List;
 public class OrdersController {
     private final OrdersService ordersService;
     private final ModelMapper modelMapper;
+
+    @PostMapping("/create-order")
+    public ResponseEntity<OrderRequestDto> createOrder(@RequestBody OrderRequestDto orderRequestDto){
+
+        OrderRequestDto orderRequestDto1 = ordersService.createorder(orderRequestDto);
+        return ResponseEntity.ok(orderRequestDto1);
+
+    }
 
     @GetMapping("/helloOrders")
     public ResponseEntity<String> helloOrders(){
