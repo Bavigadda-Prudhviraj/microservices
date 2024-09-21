@@ -1,0 +1,15 @@
+package com.prudhviraj.ecommerce.discovery_svc;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class DiscoverySvcApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DiscoverySvcApplication.class, args);
+	}
+
+}
