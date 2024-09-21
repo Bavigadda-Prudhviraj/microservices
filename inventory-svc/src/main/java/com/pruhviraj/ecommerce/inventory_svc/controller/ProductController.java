@@ -27,7 +27,7 @@ public class ProductController {
     @GetMapping("/callToOrderSvcAPI")
     public ResponseEntity<String> callToOrderSvcAPI(){
         ServiceInstance instance = discoveryClient.getInstances("order-svc").getFirst();
-        String response = restClient.get().uri(instance.getUri()+"/api/v1/orders/helloOrders").retrieve().body(String.class);
+        String response = restClient.get().uri(instance.getUri()+"/orders/core/helloOrders").retrieve().body(String.class);
         return ResponseEntity.ok(response);
 
     }
