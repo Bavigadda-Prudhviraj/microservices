@@ -1,0 +1,3 @@
+1. we have to run the discovery svc
+2. order and inventory
+3. API-gateway
