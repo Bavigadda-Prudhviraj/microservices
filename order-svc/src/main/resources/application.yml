@@ -1,0 +1,41 @@
+management:
+  health:
+    circuitbreakers:
+      enabled: true  # Enable circuit breaker health indicators
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # Expose all management endpoints (e.g., health, metrics)
+        exclude: []    # Exclude any specific endpoints if needed
+  endpoint:
+    health:
+      show-details: always  # Show detailed health information
+
+
+
+
+resilience4j:
+  retry:
+    instances:
+      inventoryRetry:
+        maxRetryAttempts: 3  # Maximum attempts before failure
+        waitDuration: 2s      # Wait duration between retries
+
+  rateLimiter:
+    instances:
+      inventoryRateLimiter:
+        limitRefreshPeriod: 1s  # Period to reset rate limit
+        limitForPeriod: 5        # Allowed calls within the period
+        timeoutDuration: 10ms    # Max wait time for a call to be allowed
+
+  circuitbreaker:
+    instances:
+      inventoryCircuitBreaker:
+        registerHealthIndicator: true  # Register health indicator for monitoring via actuator
+        slidingWindowSize: 10           # Size of the sliding window for call tracking
+        slidingWindowType: COUNT_BASED   # Type of sliding window (COUNT_BASED or TIME_BASED)
+        minimumNumberOfCalls: 5          # Min calls to evaluate failure rate
+        failureRateThreshold: 50         # Failure rate percentage to open circuit
+        waitDurationInOpenState: 10000   # Time circuit remains open
+        permittedNumberOfCallsInHalfOpenState: 3  # Calls allowed in half-open state
+        eventConsumerBufferSize: 10      # Buffer size for event consumers

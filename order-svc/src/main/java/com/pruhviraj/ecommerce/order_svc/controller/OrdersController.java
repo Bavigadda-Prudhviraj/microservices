@@ -22,7 +22,7 @@ public class OrdersController {
     @PostMapping("/create-order")
     public ResponseEntity<OrderRequestDto> createOrder(@RequestBody OrderRequestDto orderRequestDto){
 
-        OrderRequestDto orderRequestDto1 = ordersService.createorder(orderRequestDto);
+        OrderRequestDto orderRequestDto1 = ordersService.createOrder(orderRequestDto);
         return ResponseEntity.ok(orderRequestDto1);
 
     }
