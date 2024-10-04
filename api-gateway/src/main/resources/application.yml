@@ -12,6 +12,7 @@ spring:
             - Path=/api/v1/orders/**
           filters:
             - StripPrefix=2
+            - name : LoggingOrderSvcFilter
         - id: inventory-svc
           uri: lb://INVENTORY-SVC  # Corrected URI format
           predicates:
