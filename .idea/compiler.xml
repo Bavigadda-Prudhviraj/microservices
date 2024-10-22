@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="discovery-svc" />
+        <module name="config-server" />
         <module name="inventory-svc" />
         <module name="order-svc" />
       </profile>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="discovery-svc" options="-parameters" />
       <module name="inventory-svc" options="-parameters" />
       <module name="order-svc" options="-parameters" />

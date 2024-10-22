@@ -1,34 +1,5 @@
 spring:
   application:
     name: api-gateway
-
-  # API gateway config
-  cloud:
-    gateway:
-      routes:
-        - id: order-svc
-          uri: lb://ORDER-SVC
-          predicates:
-            - Path=/api/v1/orders/**
-          filters:
-            - StripPrefix=2
-            - name : LoggingOrderSvcFilter
-            - name : Authentication
-              args :
-                  isEnabled : true
-        - id: inventory-svc
-          uri: lb://INVENTORY-SVC  # Corrected URI format
-          predicates:
-            - Path=/api/v1/inventory/**
-          filters:
-            - StripPrefix=2
-            - name : Authentication
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-jwt:
-  secretKey: G$%z82pQe7Tx^dLwHt3#Vf!NzPk@u%6LjW8K9Mxl&r5SbXe4D
-
+  config:
+    import: configserver:http://localhost:8888
