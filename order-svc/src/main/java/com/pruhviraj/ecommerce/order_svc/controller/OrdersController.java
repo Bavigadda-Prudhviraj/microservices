@@ -28,8 +28,8 @@ public class OrdersController {
     }
 
     @GetMapping("/helloOrders")
-    public ResponseEntity<String> helloOrders(){
-        return ResponseEntity.ok("orders from Order-Service");
+    public ResponseEntity<String> helloOrders(@RequestHeader("X-User-Id") Long userId){
+        return ResponseEntity.ok("orders from Order-Service. UserId :  "+userId);
     }
 
     @GetMapping("/getAllOrder")
