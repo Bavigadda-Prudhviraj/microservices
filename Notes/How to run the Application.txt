@@ -1,3 +1,9 @@
 1. we have to run the discovery svc
-2. order and inventory
-3. API-gateway
+2. config-server
+3. order and inventory
+4. API-gateway
+
+Note:
+   1.When you change any configuration in the properties file in GitHub,
+     you can apply the updates to your application without restarting the server by simply hitting the /actuator/refresh endpoint,
+     which refreshes the application context to reflect the new values.
