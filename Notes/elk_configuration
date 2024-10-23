@@ -1,0 +1,117 @@
+Here is the step-by-step guide for setting up Elasticsearch, Kibana, and Logstash on a Windows system:
+
+### 1. Create a New Folder
+- **Location:** `C:\`
+- **Name:** Choose a folder name, for example, `ELK_Stack`.
+- **Action:** Create the folder `C:\ELK_Stack`.
+
+### 2. Download ELK Components
+- Download the zip files for:
+  - **Elasticsearch**
+  - **Kibana**
+  - **Logstash**
+- Save these files in the newly created `C:\ELK_Stack` folder.
+
+### 3. Extract the Files
+- Extract the downloaded zip files (`elasticsearch.zip`, `kibana.zip`, `logstash.zip`) into the `C:\ELK_Stack` folder.
+
+### 4. Set Up Elasticsearch
+1. **Navigate to the `bin` Folder:**
+   - Open `C:\ELK_Stack\elasticsearch\bin`.
+
+2. **Open Command Prompt:**
+   - In the `bin` folder, type `CMD` in the address bar to open Command Prompt.
+
+3. **Run Elasticsearch:**
+   - Execute the command:
+     ```
+     elasticsearch.bat
+     ```
+
+4. **Note Down Password and Token:**
+   - During the startup, Elasticsearch will display a generated password and an enrollment token. Copy these and save them in a Notepad file for later use.
+
+5. **Stop Elasticsearch:**
+   - Press `Ctrl + C` in the Command Prompt to stop Elasticsearch.
+
+6. **Verify Elasticsearch is Running:**
+   - Run the command again:
+     ```
+     elasticsearch.bat
+     ```
+   - If the following message appears, it indicates that Elasticsearch is running correctly:
+     ```
+     Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[.ds-ilm-history-7-2024.10.23-000001][0]]]).
+     ```
+
+### 5. Set Up Kibana
+1. **Navigate to the `bin` Folder:**
+   - Open `C:\ELK_Stack\kibana\bin`.
+
+2. **Open Command Prompt:**
+   - In the `bin` folder, type `CMD` in the address bar to open Command Prompt.
+
+3. **Run Kibana:**
+   - Execute the command:
+     ```
+     kibana.bat
+     ```
+   - Kibana will display the port number where it is hosted (default is usually `5601`).
+   - this is first time for next time onwards we can directly use
+     ```
+        http://localhost:5601
+     ```
+
+
+4. **Log in Using Token:**
+   - Access Kibana in a browser using `http://localhost:5601`.
+   - Use the enrollment token saved from Elasticsearch to log in.
+
+5. **Complete Verification:**
+   - Kibana will prompt for a verification code.
+
+6. **Generate the Verification Code:**
+   - Open a new Command Prompt in `C:\ELK_Stack\kibana\bin`.
+   - Run the command:
+     ```
+     kibana-verification-code.bat
+     ```
+   - This will generate a verification code, e.g., `256 183`.
+
+7. **Use the Verification Code:**
+   - Enter the generated code in the Kibana login prompt.
+
+8. **Configure Kibana:**
+   - After successful login, Kibana will proceed with configuration.
+
+9. **Log in with Credentials:**
+   - Kibana will prompt for login credentials. Use:
+     - **Username:** `elastic`
+     - **Password:** The password saved during Elasticsearch setup.
+10. paste one file in logstash file with logstash.conf file name
+        input {
+            file {
+                type => "log"
+                path => "C:/path/to/your/logs/*/dummy-log-*.log"  # Dummy log file path
+                start_position => "beginning"
+                sincedb_path => "NUL"  # Prevents Logstash from keeping track of the last read position
+            }
+        }
+
+        output {
+            stdout {
+                codec => rubydebug  # Print logs to stdout for debugging
+            }
+
+            elasticsearch {
+                hosts => ["https://dummy-elasticsearch-url:9200"]  # Dummy Elasticsearch URL
+                index => "dummy-index-%{+YYYY.MM.dd}"  # Dummy index name
+                ssl => false  # Enable SSL
+                ssl_certificate_verification => false  # Disable SSL verification (for testing)
+                user => "dummy_user"  # Dummy Elasticsearch username
+                password => "dummy_password"  # Dummy password
+            }
+        }
+
+
+Following these steps will set up Elasticsearch and Kibana on your system. Repeat similar steps for Logstash configuration if needed.
