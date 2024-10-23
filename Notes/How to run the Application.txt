@@ -7,3 +7,7 @@ Note:
    1.When you change any configuration in the properties file in GitHub,
      you can apply the updates to your application without restarting the server by simply hitting the /actuator/refresh endpoint,
      which refreshes the application context to reflect the new values.
+
+
+ java -jar zipkin-server-3.4.2-exec.jar --server.port=9412
+ URl http://127.0.0.1:9412/zipkin/
