@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-svc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventory-svc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notification-svc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/order-svc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user-svc/src/main/java" charset="UTF-8" />
   </component>
 </project>
