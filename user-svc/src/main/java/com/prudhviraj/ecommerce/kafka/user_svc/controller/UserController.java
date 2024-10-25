@@ -1,11 +1,10 @@
 package com.prudhviraj.ecommerce.kafka.user_svc.controller;
+import com.prudhviraj.ecommerce.kafka.user_svc.dto.UserDto;
+import com.prudhviraj.ecommerce.kafka.user_svc.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class UserController {
     private final KafkaTemplate<String, String> kafkaTemplate;
+    private final UserServiceImpl userService;
 
     @Value("${kafka.topic.user-topic}")
     private String KAFKA_USER_TOPIC;
@@ -41,6 +41,49 @@ public class UserController {
         }
         return ResponseEntity.ok("Messages queued");
     }
+
+    @PostMapping("/createUser")
+    public  ResponseEntity<String> createUser(@RequestBody UserDto userDto){
+        String response = userService.createUser(userDto);
+        return ResponseEntity.ok(response);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

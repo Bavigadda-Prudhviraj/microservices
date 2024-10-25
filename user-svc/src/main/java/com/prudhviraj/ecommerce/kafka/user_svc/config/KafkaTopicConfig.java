@@ -6,16 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Configuration class for Kafka topics.
- * This class creates and configures the necessary Kafka topics for the application.
- */
 @Configuration
 @Slf4j
 public class KafkaTopicConfig {
 
     @Value("${kafka.topic.user-topic}")
     private String KAFKA_USER_TOPIC;
+
+    @Value("${kafka.topic.user-created-topic}")
+    private String KAFKA_USER_CREATED_TOPIC;
 
     /**
      * Creates a new Kafka topic for user messages.
@@ -29,6 +28,13 @@ public class KafkaTopicConfig {
         log.info("Kafka topic {} created with {} partitions and replication factor {}", KAFKA_USER_TOPIC, 3, 1);
         return newTopic;
     }
-}
 
+    @Bean
+    public NewTopic userCreatedTopic() {
+        log.info("Creating Kafka topic: {}", KAFKA_USER_CREATED_TOPIC);
+        NewTopic newTopic = new NewTopic(KAFKA_USER_CREATED_TOPIC, 3, (short) 1);
+        log.info("Kafka topic {} created with {} partitions and replication factor {}", KAFKA_USER_CREATED_TOPIC, 3, 1);
+        return newTopic;
+    }
+}
 
