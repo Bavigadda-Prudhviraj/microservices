@@ -1,6 +1,7 @@
 package com.prudhviraj.ecommerce.kafka.notification_svc.consumer;
 
-import com.prudhviraj.ecommerce.kafka.user_svc.event.UserCreatedEvent;
+
+import com.prudhviraj.ecommerce.kafka.event.UserCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;

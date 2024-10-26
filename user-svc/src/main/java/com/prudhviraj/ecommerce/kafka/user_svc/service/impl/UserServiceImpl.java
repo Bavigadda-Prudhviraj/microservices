@@ -1,8 +1,8 @@
 package com.prudhviraj.ecommerce.kafka.user_svc.service.impl;
 
+import com.prudhviraj.ecommerce.kafka.event.UserCreatedEvent;
 import com.prudhviraj.ecommerce.kafka.user_svc.dto.UserDto;
 import com.prudhviraj.ecommerce.kafka.user_svc.entity.User;
-import com.prudhviraj.ecommerce.kafka.user_svc.event.UserCreatedEvent;
 import com.prudhviraj.ecommerce.kafka.user_svc.repository.UserRepository;
 import com.prudhviraj.ecommerce.kafka.user_svc.service.UserService;
 import lombok.RequiredArgsConstructor;

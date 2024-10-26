@@ -1,6 +1,0 @@
-We need to create the same package name in the consumer as the producer package name to ensure that the event classes can be properly serialized and deserialized. For example:
-
-- **Producer Package Name:** `com.prudhviraj.ecommerce.kafka.user_svc.events`
-- **Consumer Package Name:** `com.prudhviraj.ecommerce.kafka.user_svc.events`
-
-This consistency in package structure allows the consumer to locate and process the events produced by the producer without encountering trust issues or serialization errors.
