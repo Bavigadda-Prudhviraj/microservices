@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/user-svc/pom.xml" />
         <option value="$PROJECT_DIR$/notification-svc/pom.xml" />
+        <option value="$PROJECT_DIR$/product_svc/pom.xml" />
       </list>
     </option>
   </component>

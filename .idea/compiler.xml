@@ -13,6 +13,7 @@
         <module name="notification-svc" />
         <module name="order-svc" />
         <module name="api-gateway" />
+        <module name="product_svc" />
         <module name="inventory-svc" />
       </profile>
     </annotationProcessing>
@@ -25,6 +26,7 @@
       <module name="inventory-svc" options="-parameters" />
       <module name="notification-svc" options="-parameters" />
       <module name="order-svc" options="-parameters" />
+      <module name="product_svc" options="-parameters" />
       <module name="user-svc" options="-parameters" />
     </option>
   </component>

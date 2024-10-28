@@ -1,0 +1,64 @@
+<-------------------------------------------------------- without maven plugin --------------------------------------------------------------------------------->
+Here’s a more detailed breakdown for each step to build and run a Docker image from a Spring Boot project without using a Maven plugin:
+
+1. **Create a JAR file**:
+    In IntelliJ, open the Maven tool window, navigate to your project, and click on the "package" lifecycle phase to generate a JAR file in the `target` directory.
+
+2. **Create a Dockerfile**:
+    In the root directory of your project, create a `Dockerfile` that specifies the base image, copies the JAR file,
+    and defines the command to run it (e.g., `FROM openjdk:21`, `COPY target/your-app.jar app.jar`, `CMD ["java", "-jar", "app.jar"]`).
+
+3. **Build the Docker image**:
+    Open a terminal, navigate to the root directory of your project where the `Dockerfile` is located,
+    and run the command `docker build -t your-username/your-app:tag .` to create the image.
+
+4. **Run the Docker image**:
+    Start a container from the image by executing `docker run -p 8080:8080 your-username/your-app:tag` to map the container's port 8080 to your local port 8080.
+
+5. **Call APIs**:
+    Once the container is running, you can access the application's endpoints via `http://localhost:8080/your-endpoint`,
+    confirming the application is up and functional.
+
+These steps guide you through packaging the application, setting up the Docker environment, and testing the deployed image. Let me know if you need more details on any step!
+
+
+
+<---------------------------------------------------------------- with maven plugin ------------------------------------------------------------------------------------>
+Here are the steps to create a Docker image using Maven, run it, and push it to Docker Hub:
+
+1. **Create the Docker Image with Maven**:
+   - Use the following Maven command to build the project and create the Docker image:
+     ```powershell
+     mvn clean install spring-boot:build-image
+     ```
+   - This command cleans the project, installs dependencies, and uses the `spring-boot-maven-plugin` to create a Docker image with the format `<project_name>:<version>`, such as `product_svc:0.0.1-SNAPSHOT`.
+
+2. **Run the Docker Container**:
+   - Use the following command to start the container and map the container's port 8080 to the host's port 8080:
+     ```bash
+     docker run -p 8080:8080 product_svc:0.0.1-SNAPSHOT
+     ```
+   - This command runs the application in a Docker container, allowing you to access it on `http://localhost:8080`.
+
+3. **Tag the Docker Image**:
+   - Before pushing the image to Docker Hub, you need to tag it with your Docker Hub repository:
+     ```bash
+     docker tag product_svc:0.0.1-SNAPSHOT prudhvirajd852/product_svc:0.0.1
+     ```
+   - This command tags the image with your Docker Hub username (`prudhvirajd852`) and version `0.0.1`.
+
+4. **Push the Docker Image to Docker Hub**:
+   - Push the tagged image to your Docker Hub repository:
+     ```bash
+     docker push prudhvirajd852/product_svc:0.0.1
+     ```
+   - This command uploads the image to Docker Hub, making it accessible for others to pull.
+
+5. **Alternative Tagging Option (if needed)**:
+   - Another way to tag the image is:
+     ```bash
+     docker tag product_svc:0.0.1-SNAPSHOT prudhvirajd852/product_svc
+     ```
+   - This tags the image with just the username and repository name, without specifying the version.
+
+These commands streamline building, running, and pushing your Docker image using Maven and Docker.
